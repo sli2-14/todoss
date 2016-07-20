@@ -8,11 +8,34 @@
 
 import UIKit
 
+
+var taskMgr: TaskManager = TaskManager()
+
+struct task {
+    var  name  = "unnamed"
+    var desc = "undescribed"
+}
+
+class TaskManager: NSObject {
+    
+    var  tasks = [task]()
+    
+    func addTask(name: String, desc: String){
+        tasks.append(task(name:name, desc: desc))
+    }
+    
+}
+
+    
+
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    
+    
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
