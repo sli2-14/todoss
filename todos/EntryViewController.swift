@@ -1,15 +1,11 @@
-//
-//  EntryViewController.swift
-//  todos
-//
-//  Created by 李帅 on 7/20/16.
-//  Copyright © 2016 shuaili. All rights reserved.
-//
 
 import UIKit
 
-class EntryViewController: UIViewController {
+class EntryViewController: UIViewController , UITextFieldDelegate{
 
+    
+    @IBOutlet var txtTask: UITextField!
+    @IBOutlet var txtDesc: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,6 +17,29 @@ class EntryViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    //
+    @IBAction func btnAddTask_Click(sender: UIButton){
+        print("the button clicked")
+        taskMgr.addTask(txtTask.text!, desc: txtDesc.text! )
+        self.view.endEditing(true)
+        txtTask.text = ""
+        txtDesc.text = ""
+        self.tabBarController?.selectedIndex = 0;
+        
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder();
+        return true
+    }
+    
+    @IBAction func actionSaveData(sender: AnyObject) {
+        self.navigationController?.popToRootViewControllerAnimated(true)
+    }
 
     /*
     // MARK: - Navigation
